@@ -42,9 +42,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     # 3rd parties
     "rest_framework",
     "drf_spectacular",
+
+    # internal apps
+    "user_profile",
+    "shared",
+    "post",
 ]
 
 MIDDLEWARE = [
@@ -59,6 +65,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "main.urls"
+AUTH_USER_MODEL = "user_profile.User"
 
 TEMPLATES = [
     {
