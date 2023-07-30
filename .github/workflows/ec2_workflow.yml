@@ -62,5 +62,5 @@ jobs:
           key: ${{ secrets.HOST_SSH_KEY }}
           port: ${{ vars.HOST_SSH_PORT }}
           script: |
-            cd ~/list_posts
+            cd ~/list_posts_test
             ./deploy
