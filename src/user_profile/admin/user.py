@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from shared.django_admins.base_admin import BaseModelAdmin
 from user_profile.models import User
 
 

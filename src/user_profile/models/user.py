@@ -7,4 +7,5 @@ class User(AbstractUser):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def get_nickname(self) -> str:
-        return self.nickname or self.username
+        nickname: str = self.nickname or self.username
+        return nickname

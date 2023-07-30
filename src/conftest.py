@@ -4,11 +4,11 @@ from typing import (
     Optional,
 )
 
+from django.conf import settings
+
 import pytest
 from rest_framework.test import APIClient
 from testcontainers.postgres import PostgresContainer
-
-from main import settings
 
 
 class PostgresContainerEx(PostgresContainer):
@@ -21,7 +21,7 @@ class PostgresContainerEx(PostgresContainer):
 @pytest.fixture(scope="session", autouse=True)
 def postgres_container() -> Generator[None, None, None]:
     with PostgresContainerEx(
-        image="postgres:11.18-alpine",
+        image="postgres:14.8-alpine",
         dbname=settings.DATABASES["default"]["NAME"],
         user=settings.DATABASES["default"]["USER"],
         password=settings.DATABASES["default"]["PASSWORD"],

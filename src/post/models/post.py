@@ -15,5 +15,6 @@ class Post(BaseModel):
     objects = ActivePostManager()
     all_objects = AllPostManager()
 
-    def __str__(self):
-        return self.title
+    def __str__(self) -> str:
+        title: str = self.title
+        return title

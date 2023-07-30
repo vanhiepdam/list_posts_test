@@ -87,12 +87,9 @@ module = [
     "django.*",
     "rest_framework.*",
     "testcontainers.*",
-    "tablib.*",
-    "import_export.*",
-    "openpyxl.*",
-    "xlwt.*",
-    "drf_standardized_errors.*",
-    "opencensus.*",
-    "factory.*"
+    "factory.*",
+    "shared.*",
+    "post.*",
+    "user_profile.*",
 ]
 ignore_missing_imports = true
