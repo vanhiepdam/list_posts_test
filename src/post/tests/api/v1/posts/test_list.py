@@ -94,7 +94,7 @@ class TestListPostApiV1:
     def test_success__list_all__long_comment(self, post_data, api_client):
         # Arrange
         url = "/api/v1/posts?page_size=1"
-        most_recent_comment = CommentFactory(
+        CommentFactory(
             content="Lorem ipsum dolor sit amet, consectetur adipiscing elit sollicitudin id",
             post=post_data["post_3"],
         )
