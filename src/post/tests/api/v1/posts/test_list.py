@@ -90,3 +90,30 @@ class TestListPostApiV1:
         }
         assert response.data["results"][0]["most_recent_comment"] == post_data["comment_2"].content
         assert "api/v1/posts?page=2&page_size=1" in response.data["next"]
+
+    def test_success__list_all__long_comment(self, post_data, api_client):
+        # Arrange
+        url = "/api/v1/posts?page_size=1"
+        most_recent_comment = CommentFactory(
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit sollicitudin id",
+            post=post_data["post_3"],
+        )
+
+        # Act
+        response = api_client.get(url)
+
+        # Assert
+        assert response.status_code == 200
+        assert len(response.data["results"]) == 1
+        assert response.data["results"][0]["id"] == post_data["post_3"].id
+        assert response.data["results"][0]["title"] == post_data["post_3"].title
+        assert response.data["results"][0]["author"] == {
+            "id": post_data["post_3"].author.id,
+            "username": post_data["post_3"].author.username,
+            "nickname": post_data["post_3"].author.get_nickname(),
+        }
+        assert (
+            response.data["results"][0]["most_recent_comment"]
+            == "Lorem ipsum dolor sit amet, consectetur adipiscing elit ..."
+        )
+        assert "api/v1/posts?page=2&page_size=1" in response.data["next"]
