@@ -3,7 +3,6 @@ import pytest
 
 from user_profile.tests.factories.user import UserFactory
 
-
 pytestmark = [pytest.mark.django_db]
 
 

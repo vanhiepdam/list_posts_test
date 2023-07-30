@@ -4,11 +4,11 @@ from typing import (
     Optional,
 )
 
+from django.conf import settings
+
 import pytest
 from rest_framework.test import APIClient
 from testcontainers.postgres import PostgresContainer
-
-from main import settings
 
 
 class PostgresContainerEx(PostgresContainer):

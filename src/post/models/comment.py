@@ -17,4 +17,5 @@ class Comment(BaseModel):
 
     @property
     def preview(self) -> str:
-        return self.content[:20] + "..." if len(self.content) > 20 else self.content
+        preview: str = self.content[:20] + "..." if len(self.content) > 20 else self.content
+        return preview
