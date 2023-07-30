@@ -39,6 +39,24 @@ build-backend = "poetry.core.masonry.api"
 [tool.isort]
 profile = "black"
 
+multi_line_output = 3
+force_grid_wrap = 2
+include_trailing_comma = true
+combine_as_imports = true
+filter_files = true
+case_sensitive = true
+
+# Define the Django imports.
+known_django = "django"
+
+# Define the MOC imports (FIRSTPARTY).
+known_first_party = ["shared", "user_profile", "post"]
+
+sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+
+# Default for unknown imports.
+default_section = "THIRDPARTY"
+
 [tool.mypy]
 python_version = "3.10"
 platform = "linux"
@@ -65,4 +83,16 @@ disallow_untyped_decorators = false
 disallow_untyped_defs = true
 
 [[tool.mypy.overrides]]
+module = [
+    "django.*",
+    "rest_framework.*",
+    "testcontainers.*",
+    "tablib.*",
+    "import_export.*",
+    "openpyxl.*",
+    "xlwt.*",
+    "drf_standardized_errors.*",
+    "opencensus.*",
+    "factory.*"
+]
 ignore_missing_imports = true
