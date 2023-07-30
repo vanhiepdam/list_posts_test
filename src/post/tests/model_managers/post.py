@@ -44,14 +44,24 @@ class TestPostManager:
         assert post_data["inactive_post_1"] in active_posts
         assert post_data["inactive_post_2"] in active_posts
 
-    def test_full_prefetch(self, post_data):
+    def test_with_most_recent_comments__have_comments(self, post_data):
         # Arrange
-        CommentFactory.create_batch(2, post=post_data["active_post_1"])
+        post = post_data["active_post_1"]
+        CommentFactory(post=post, content="comment 1")
+        CommentFactory(post=post, content="comment 2")
 
         # Act
-        active_posts = Post.objects.all()
+        post = Post.objects.all().with_most_recent_comment().get(id=post.id)
 
         # Assert
-        assert active_posts.count() == 2
-        assert post_data["active_post_1"] in active_posts
-        assert post_data["active_post_2"] in active_posts
+        assert post.most_recent_comment == "comment 2"
+
+    def test_with_most_recent_comments__have_no_comments(self, post_data):
+        # Arrange
+        post = post_data["active_post_1"]
+
+        # Act
+        post = Post.objects.all().with_most_recent_comment().get(id=post.id)
+
+        # Assert
+        assert post.most_recent_comment is None

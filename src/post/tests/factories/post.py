@@ -14,11 +14,3 @@ class PostFactory(DjangoModelFactory):
 
     author = factory.SubFactory(UserFactory)
     title = factory.Faker("sentence", nb_words=5)
-
-    @factory.post_generation
-    def comments(self, create, extracted, **kwargs):
-        if not create:
-            return
-
-        if extracted:
-            self.comments.add(*extracted)
