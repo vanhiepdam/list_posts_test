@@ -20,6 +20,7 @@ services:
       - |
           python manage.py collectstatic
           python manage.py migrate
+          python manage.py loaddata seeds/sample.json
           python manage.py runserver 0.0.0.0:8000
 
   db:
